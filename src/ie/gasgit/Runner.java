@@ -1,5 +1,6 @@
 package ie.gasgit;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,7 +9,7 @@ import java.util.logging.Logger;
  */
 public class Runner {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // create connect
         Connect con = null;
         try {
@@ -18,9 +19,18 @@ public class Runner {
         }
 
         // create new object
-        Person p = new Person("hilti", "555", "133","salmon44");
+        Person p = new Person("Test_name", "666", "133","salmon44");
+
+        Location loc = new Location("53.273870", "-9.051916","555");
+
+
         // insert object
-        con.insertObject(p);
+        //con.insertObject(p);
+
+        System.out.println("String: " + p.toString());
+
+        con.insertGeneric(p);
+        con.insertGeneric(loc);
 
 //        // delete document key/value
 //        con.delete("eye_col","salmon44");
@@ -38,7 +48,7 @@ public class Runner {
 //        con.updateField("name","MongoDB","Mongo_changed");
 
 //        // delete many docs common key/value
-//        con.deleteMany("name","hilti");
+//        con.deleteMany("name","Zebra");
 
         //con.createNewCollection("test_createNewCollection_method");
         con.createNewDatabase("test_createNewDatabase_method");

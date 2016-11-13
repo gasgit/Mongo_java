@@ -6,8 +6,10 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.codehaus.jackson.map.ObjectMapper;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +53,18 @@ public class Connect {
                         .append("eye_col",object.getEye_col());
 
         collection.insertOne(doc);
+    }
+
+    // insert any object
+    public <E> void insertGeneric(E object) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonString = mapper.writeValueAsString(object);
+
+        System.out.println("json: " + jsonString);
+        collection.insertOne(Document.parse(jsonString));
+
     }
 
     // get first doc in collection
@@ -160,6 +174,11 @@ public class Connect {
     }
 
     public void deleteCollection(){
+
+
+
+
+
 
     }
 

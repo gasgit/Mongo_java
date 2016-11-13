@@ -18,6 +18,12 @@ public class Person {
         this.eye_col = eye_col;
     }
 
+
+
+
+
+
+
     public String getName() {
         return name;
     }
